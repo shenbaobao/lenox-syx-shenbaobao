@@ -1,0 +1,26 @@
+尝试用百度语音进行识别
+读取成功后返回
+{u'err_no': 0, u'corpus_no': u'6479709700173956685', u'err_msg': u'success.', u'result': [u'\u4e94\uff0c\u4e94\uff0c'], u'sn': u'879999234051508674979'}
+这个result就是结果
+但是读到的中文因为编码问题不能正常显示
+尝试用.encode('gb2312')解决，但是
+Traceback (most recent call last):
+  File "E:\大三上\pythonfile\百度语音.py", line 17, in <module>
+    print s.decode('utf-8').encode('gb2312')
+AttributeError: 'list' object has no attribute 'decode'
+查询后发现，decode和encode是str和unicode才有的方法,list是数据结构，数据结构里没有这个编码的，然后想办法将result的结果从list换出到str
+
+
+python string与list互转 
+因为python的read和write方法的操作对象都是string。而操作二进制的时候会把string转换成list进行解析，解析后重新写入文件的时候，还得转换成string。
+
+import string
+str = 'abcde'
+ list = list(str)
+list
+['a', 'b', 'c', 'd', 'e']
+str
+'abcde'
+str_convert = ''.join(list)
+str_convert
+'abcde'
