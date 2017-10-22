@@ -10,7 +10,7 @@ Traceback (most recent call last):
 AttributeError: 'list' object has no attribute 'decode'
 查询后发现，decode和encode是str和unicode才有的方法,list是数据结构，数据结构里没有这个编码的，然后想办法将result的结果从list换出到str
 
-
+e.g.1
 python string与list互转 
 因为python的read和write方法的操作对象都是string。而操作二进制的时候会把string转换成list进行解析，解析后重新写入文件的时候，还得转换成string。
 
@@ -24,3 +24,39 @@ str
 str_convert = ''.join(list)
 str_convert
 'abcde'
+
+
+e.g.2
+# -*- coding: UTF-8 -*-
+#小猪短租爬取
+import requests
+from bs4 import BeautifulSoup
+import json
+def get_xinxi(i):
+    url = 'http://cd.xiaozhu.com/search-duanzufang-p%d-0/' %i
+    html = requests.get(url)
+    soup = BeautifulSoup(html.content)
+    #获取地址
+    dizhis=soup.select(' div > a > span')
+    #获取价格
+    prices = soup.select(' span.result_price')
+    #获取简单信息
+    ems = soup.select(' div > em')
+    datas =[]
+    for dizhi,price,em in zip(dizhis,prices,ems):
+        data={
+            '价格':price.get_text(),
+            '信息':em.get_text().replace('\n','').replace(' ',''),
+            '地址':dizhi.get_text()
+        }
+        
+        
+        
+        print(json.dumps(data).decode("unicode-escape"))
+
+
+
+i=1
+while(i<12):
+    get_xinxi(i)
+    i=i+1
