@@ -5,7 +5,9 @@
     Flaskr
 
     ~~~~~~
-
+http://dormousehole.readthedocs.io/en/latest/tutorial/index.html教程地址
+这是flask操作sqlite3 的案例，查了下说是操作mysql也相似。。。网上都是SQLAlchemy，Flask-SQLAlchemy的，看起来比较复杂，想尝试写flask+MySQL的。
+尝试修改
 
 
     A microblog example application written as Flask tutorial with
