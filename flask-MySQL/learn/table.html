@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block table %}
+
+<h1>表格尝试</h1>
+
+<table class="table-striped footable-res footable metro-blue" data-page-size="6">
+    <thead>
+    <tr><th>教师编号</th><th>教师名</th><th>教师电话</th></tr>
+    </thead>
+   <tbody>
+       {% for item in posts %}
+{#           {% piece1 = item[1],piece2=item[2],piece3=item[3] %}#}
+           <tr>
+               <td>{{ item[0] }}</td>
+               <td>{{ item[1] }}</td>
+               <td>{{ item[2] }}</td>
+{#             <td>{{ piece2 }}</td><td>{{ posts[1] }}</td><td>{{ posts[2] }}</td>#}
+           </tr>
+       {% endfor %}
+{#   {% endfor %}#}
+ </tbody>
+    <tfoot><tr><td colspan="5"><div class="pagination pagination-centered"></div></td>
+    </tr>
+    </tfoot>
+</table>
+
+
+{% endblock %}
